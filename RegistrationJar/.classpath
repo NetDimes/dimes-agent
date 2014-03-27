@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry excluding="dimes/comm2server/BinaryCommunicator.java|dimes/state/user/PropertiesDetails.java|dimes/util/gui/BrowserLauncherUtil.java|dimes/util/gui/PasswordDialog.java|dimes/util/gui/StatisticsReader.java|dimes/util/registration/RegistrationPanel.java" kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="resources/log4j-1.2.16.jar"/>
+	<classpathentry kind="lib" path="resources/commons-io-1.3.2.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

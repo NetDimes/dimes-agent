@@ -1,0 +1,18 @@
+This software is copyrighted under the LGPL copyright license.
+Visit us at:  http://www.netDimes.org
+
+Acknowledgments:
+DIMES uses code from the following open source projects:
+netgraph (http://cyrille.morvan.free.fr/netgraph/en/)
+WinMTR (http://winmtr.sourceforge.net/)
+dom4j (http://www.dom4j.org/)
+skinlf (http://www.l2fprod.com/)
+Jakarta Commons I/O (http://commons.apache.org/io/)
+BrowserLauncher2 (http://browserlaunch2.sourceforge.net/)
+
+DIMES uses beautiful graphics by Ayelet Danieli.
+
+We would like to thank Etzion Bar-Noy for his assistance with system administration.
+We would also like to thank the kind people of the EU for supporting the DIMES research project.
+
+The DIMES Team

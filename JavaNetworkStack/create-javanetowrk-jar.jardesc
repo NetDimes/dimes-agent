@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jardesc>
+<jar path="E:/QBE/worksapace/JavaNetworkStack/lib/JavaNetworkStack.jar"/>
+<options buildIfNeeded="true" compress="true" descriptionLocation="/JavaNetworkStack/create-javanetowrk-jar.jardesc" exportErrors="true" exportWarnings="true" includeDirectoryEntries="false" overwrite="false" saveDescription="true" useSourceFolders="false"/>
+<manifest generateManifest="true" manifestLocation="" manifestVersion="1.0" reuseManifest="false" saveManifest="false" usesManifest="true">
+<sealing sealJar="false">
+<packagesToSeal/>
+<packagesToUnSeal/>
+</sealing>
+</manifest>
+<selectedElements exportClassFiles="true" exportJavaFiles="false" exportOutputFolder="false">
+<file path="/JavaNetworkStack/.classpath"/>
+<javaElement handleIdentifier="=JavaNetworkStack/&lt;dimes.measurements.nio.platform"/>
+<file path="/JavaNetworkStack/.project"/>
+<javaElement handleIdentifier="=JavaNetworkStack/&lt;dimes.measurements"/>
+<javaElement handleIdentifier="=JavaNetworkStack/&lt;dimes.measurements.nio.testing"/>
+<javaElement handleIdentifier="=JavaNetworkStack/&lt;dimes.measurements.nio.packet.builder"/>
+<javaElement handleIdentifier="=JavaNetworkStack/&lt;dimes.measurements.nio.error"/>
+<javaElement handleIdentifier="=JavaNetworkStack/&lt;dimes.measurements.nio.packet.util"/>
+<file path="/JavaNetworkStack/javadoc.xml"/>
+<javaElement handleIdentifier="=JavaNetworkStack/&lt;dimes.measurements.nio"/>
+<javaElement handleIdentifier="=JavaNetworkStack/&lt;dimes.measurements.nio.packet.analysis"/>
+<file path="/JavaNetworkStack/dimespacket.sys"/>
+<javaElement handleIdentifier="=JavaNetworkStack/&lt;dimes.measurements.nio.packet"/>
+<javaElement handleIdentifier="=JavaNetworkStack/&lt;dimes.measurements.nio.packet.header"/>
+</selectedElements>
+</jardesc>

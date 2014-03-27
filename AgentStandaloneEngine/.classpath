@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry excluding="NetGraph/|dimes/AgentGuiComm/QueryDispatch.java|dimes/AgentGuiComm/logging/GraphHandler.java|dimes/AgentGuiComm/responseHandlers/ShowRequestHandler.java|dimes/AgentGuiComm/util/Message.java|dimes/GuiAgent.java|dimes/comm2server/BinaryCommunicator.java|dimes/gui/|dimes/gui/AgentFrame.java|dimes/gui/AgentFrameComponentsHolder.java|dimes/gui/AgentFrameOld.java|dimes/gui/PopUpWindow.java|dimes/gui/SplashScreen.java|dimes/gui/StatisticsPanel.java|dimes/gui/SystemMenu.java|dimes/gui/UserScriptsPanel.java|dimes/gui/platform/|dimes/gui/platform/OldWindowsAgentFrame.java|dimes/gui/properties/|dimes/gui/properties/CopyOfSettingsPane.java|dimes/gui/sortedjtable/|dimes/gui/util/PasswordDialog.java|dimes/measurements/P2PMeasurementExecution.java|dimes/measurements/newOps/|dimes/measurements/operation/PackettrainOp.java|dimes/measurements/operation/PeerPacketTrainOp.java|dimes/measurements/operation/TreerouteOp.java|dimes/measurements/packettrain/|dimes/measurements/results/ResultUtils.java|dimes/measurements/treeroute/|dimes/measurements/unused/|dimes/rendezvous/|dimes/state/handlers/MetaOPHandler.java|dimes/state/handlers/UpdateHandler.java|dimes/state/user/PropertiesDetails.java|dimes/treeroute/|dimes/treeroute/util/|dimes/util/debug/|dimes/util/gui/|dimes/util/logging/FrameHandler.java|dimes/util/logging/GraphHandler.java|dimes/util/logging/UserScriptsFrameHandler.java|dimes/util/properties/PropertiesBeanOld.java|dimes/util/properties/PropertiesBeanProposedNew.java|dimes/util/registration/|dimes/util/update/UpdateOp.java|dimes/util/logging/Loggers.java|dimes/util/logging/ASInfoUpdateGraphHandler.java|dimes/util/logging/ResultsMethodCheckerTask.java|testing/testDebugTester.java|testing/TestParser.java" kind="src" path=""/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/JavaNetworkStack"/>
+	<classpathentry kind="lib" path="resources/commons-compress-1.0.jar"/>
+	<classpathentry kind="lib" path="resources/commons-io-1.3.2.jar"/>
+	<classpathentry kind="lib" path="resources/junit-4.7.jar"/>
+	<classpathentry kind="lib" path="resources/log4j-1.2.16.jar"/>
+	<classpathentry kind="lib" path="resources/stunt.jar"/>
+	<classpathentry kind="lib" path="base/bin/wrapper.jar"/>
+	<classpathentry kind="output" path="output"/>
+</classpath>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jardesc>
+    <jar path="C:/dimes/eclipse/workspace/TreeRoute/DimesDevelopmentAgent.jar"/>
+    <options overwrite="true" compress="true" exportErrors="true" exportWarnings="true" saveDescription="true" descriptionLocation="/DevelopmentAgent/treerouteJarExporter.jardesc" useSourceFolders="false" buildIfNeeded="true"/>
+    <manifest manifestVersion="1.0" usesManifest="true" reuseManifest="false" saveManifest="false" generateManifest="true" manifestLocation="">
+        <sealing sealJar="false">
+            <packagesToSeal/>
+            <packagesToUnSeal/>
+        </sealing>
+    </manifest>
+    <selectedElements exportClassFiles="true" exportOutputFolder="false" exportJavaFiles="false">
+        <file path="/DevelopmentAgent/.cvsignore"/>
+        <javaElement handleIdentifier="=DevelopmentAgent/&lt;NetGraph.graph"/>
+        <javaElement handleIdentifier="=DevelopmentAgent/&lt;lib_odi.com.ch.odi.io"/>
+        <javaElement handleIdentifier="=DevelopmentAgent/&lt;dimes.gui.platform"/>
+        <javaElement handleIdentifier="=DevelopmentAgent/&lt;dimes.util.comState"/>
+        <javaElement handleIdentifier="=DevelopmentAgent/&lt;dimes.state"/>
+        <javaElement handleIdentifier="=DevelopmentAgent/&lt;dimes.gui"/>
+        <file path="/DevelopmentAgent/treerouteJarExporter.jardesc"/>
+        <javaElement handleIdentifier="=DevelopmentAgent/&lt;dimes.gui.util"/>
+        <javaElement handleIdentifier="=DevelopmentAgent/&lt;dimes.util.properties"/>
+        <javaElement handleIdentifier="=DevelopmentAgent/&lt;NetGraph.graph.components"/>
+        <javaElement handleIdentifier="=DevelopmentAgent/&lt;dimes.platform"/>
+        <javaElement handleIdentifier="=DevelopmentAgent/&lt;NetGraph.graph.components.discovery"/>
+        <file path="/DevelopmentAgent/dimes_util_comState_CommunicationDetector.cpp"/>
+        <javaElement handleIdentifier="=DevelopmentAgent/&lt;dimes"/>
+        <javaElement handleIdentifier="=DevelopmentAgent/&lt;dimes.util.logging"/>
+        <javaElement handleIdentifier="=DevelopmentAgent/&lt;dimes.util"/>
+        <javaElement handleIdentifier="=DevelopmentAgent/&lt;dimes.scheduler"/>
+        <javaElement handleIdentifier="=DevelopmentAgent/&lt;dimes.scheduler.usertask"/>
+        <javaElement handleIdentifier="=DevelopmentAgent/&lt;dimes.state.user"/>
+        <javaElement handleIdentifier="=DevelopmentAgent/&lt;dimes.gui.properties"/>
+        <javaElement handleIdentifier="=DevelopmentAgent/&lt;NetGraph.utils"/>
+        <javaElement handleIdentifier="=DevelopmentAgent/&lt;NetGraph.graph.util"/>
+        <javaElement handleIdentifier="=DevelopmentAgent/&lt;"/>
+        <javaElement handleIdentifier="=DevelopmentAgent/&lt;dimes.gui.registration"/>
+        <javaElement handleIdentifier="=DevelopmentAgent/&lt;NetGraph"/>
+        <file path="/DevelopmentAgent/dimes_util_comState_CommunicationDetector.h"/>
+        <file path="/DevelopmentAgent/.classpath"/>
+        <file path="/DevelopmentAgent/.project"/>
+        <javaElement handleIdentifier="=DevelopmentAgent/&lt;dimes.comm2server"/>
+        <javaElement handleIdentifier="=DevelopmentAgent/&lt;dimes.measurements"/>
+    </selectedElements>
+</jardesc>

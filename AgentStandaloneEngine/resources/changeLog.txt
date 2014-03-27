@@ -1,0 +1,113 @@
+Change Log:
+
+----- version 1.0.1 -----
+- Bug fixes in System Tray and Registration Process
+- Adding Win32 Version
+
+----- version 1.0 -----
+- New Non GUI Agent for WINDOWS 7/8
+- Full WINDOWS service
+- New System Tray
+- Registratin process separated from the main Agent and installer
+- Various bug fixes and code clean
+
+----- version 0.5.5 -----
+- Measurements results now reside in memory (compressed) with file backup
+- New measurement type: ParisTracerout
+- New network stack implementation
+- Better handling of some XML files
+- User script now accepts XML
+- QBE fixed for certain Vista machines
+
+
+----- version 0.5.2 -----
+- Agent now requires Java 6
+- Statistics Window fixed in Vista
+- Linux, Mac, and Windows now all work with the same code (0.5.0) 
+- Removed individual frames for Windows and Linux, now they use the same frame
+- Removed IDW and layout menu
+- Moved from Systray4j to built in Java trayicon implementation
+- Removed systray4j 
+- Implemented partial skinning, upgraded skinLF
+- Removed reflection as a way to launch the agent, as it's no longer necessary (no custom frames) 
+- Smaller memory footprint, various bugs fixed
+
+----- version 0.5.0 -----
+- Post Gallery Button - removed. Not in use any more.
+- The Personal Trace Tool bar was fixed and improved (Adding some logging and a "Trace!!!" Button).
+- Preferences JMEnuItem in the Window tool bar - removed. Not in use any more.
+- Statistics Window added. Being updated every hour after the statistics process run in the server.
+- Rewriting of extended parts in the component which takes care of files (FileHandlerBean).
+- All the use of incoming data was changed to be based on strings instead of files - to avoid unnecessary I/O activity.
+- Logger system: only one rotating file is being used in the limit of maximum 1MB length. Every agent start process this file is being reinitialized.
+- Automatic getInfo action: Every 10 minutes. Can be configured under Agent -> Properties -> Network to any time between 5 to 60 minutes.
+- Support in default measurements in case that the server is down and Agent can not get measurements script.
+- Changing installation script not to create the Incoming and Incoming/Keepalive folders - not in use anymore.
+- Adding support in QBE measurements.
+- Various bug fixes.   
+
+----- version 0.4.5 -----
+- Various bug fixes: getInfo support, creating root directories from Agent code, Working with JRE6
+
+----- version 0.4.4 -----
+- Adding Agent Service mode
+
+----- version 0.4.3 -----
+- Various bug fixes
+- Support for Keepalive control center
+
+----- version 0.4.2 ------
+- Packettrain measurement 
+- Manual user scripts , url analyzer and IP fetching crawler
+
+
+----- version 0.4  ------
+- Screen saver support
+- Docking view
+- Added toxic themepack skin for swing
+- Improved netgraph options
+
+----- version 0.3  -----
+- Entered production state
+
+----- version 0.2.4.3 ----
+- Fixed closing issues - related to dialog boxes
+
+----- version 0.2.4.2 ----
+- Fixed comm status and exponential delay
+- Fixed bug that kept junk files when comm failed
+
+----- version 0.2.4.1 ----
+- Added auto update features
+- Comm status and exponential backoff - version still contains some errors
+- Added delayed start for startup launching
+- Changed GUI - added options to change properties through GUI
+
+----- version 0.2.3.2 ----
+- Fixed a bug in the registration process
+
+----- version 0.2.3.1 ----
+- Fixed a bug that started in 0.2.3 which caused the agent to resend the same logs
+- Put dll in private dir instead of win\system32
+
+----- version 0.2.3 ----
+- Opens a different connection per file
+- Doesn't update GUI when in tray
+
+----- version 0.2.2 ----
+- User registration moved from installer to runtime
+- Handles proxy
+- File size limiting
+- Bandwidth limiting
+- Finds IP of 1st non-private hop address
+- Deletes garbage files
+- Debug mode
+
+----- version 0.2.1 -----
+- Fixed a bug in dealing with broken routes in traceroute
+- Changed ping implementation
+
+----- version 0.2 ------
+- Added user details registration
+- Added option to stop displaying splash screen at startup of agent
+- Single copy of agent is allowed on a specific computer

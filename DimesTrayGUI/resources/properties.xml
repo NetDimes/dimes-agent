@@ -1,0 +1,7 @@
+<agentgui>
+<localport>33333</localport>
+<iconred>dimesRed.gif</iconred>
+<iconyellow>dimesYellow.gif</iconyellow>
+<icongreen>dimesGreen.gif</icongreen>
+<aboutFile>about.html</aboutFile>
+</agentgui>

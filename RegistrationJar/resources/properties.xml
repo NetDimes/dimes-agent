@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- conf.xml    -->
+<!-- conf file for DOMtry.java -->
+
+<!DOCTYPE agentConf [
+<!ENTITY NOP "0">
+<!ENTITY DELETE "1">
+<!ENTITY MOVE "2">
+<!ENTITY RENAME "3">
+<!ENTITY MOVE_RENAME "4">
+]>
+
+
+<agentConf>
+
+        <userName>Anonymous.NetHd</userName>
+        <agentName>Anonymous.NetHd_Agent_2</agentName>
+        <email/>
+        <country/>
+        <countryFile>D:\Program Files\DIMES10\DIMES/Agent/Classes/Base/conf/countries-xml.txt</countryFile>
+        <group/>
+        <groupOwner/>
+
+
+    <IP>132.66.53.164</IP>
+    <mac>00:1F:29:D3:01:6B</mac>
+    <agentVersion>0.5.5.4</agentVersion>
+    <init>
+        <dirs>
+            <base>D:\Program Files\DIMES10\DIMES/Agent/Classes/Base</base>
+            <incoming_dir>Incoming</incoming_dir>
+            <outgoing_dir>C:\Users\user/DIMES/</outgoing_dir>
+            <log_dir>C:\Users\user/DIMES/log</log_dir>
+            <results_dir>C:\Users\user/DIMES/results</results_dir>
+            <history>History</history>
+            <resources>resources</resources>
+            <keepalive>Incoming/Keepalive</keepalive>
+        </dirs>
+            
+            <!-- this property should not be in <dirs> section because the dir is not under <base> -->
+            <jarDir>D:\Program Files\DIMES10\DIMES/Agent/Classes/JARs</jarDir>
+                        <outgoing_dir>C:\Users\user/DIMES/</outgoing_dir>
+            <log_dir>C:\Users\user/DIMES/log</log_dir>
+            <results_dir>C:\Users\user/DIMES/results</results_dir>
+
+        <policies>
+            <statistics_update_minute>40</statistics_update_minute>
+            <after_usage>
+            <!-- The name of these properties is the same as the extension of their matching files -->
+                <in>1</in>
+                <out>1</out>
+            </after_usage>
+                <comm>
+                <num_of_trials>2</num_of_trials>
+                <connectTimeout>30000</connectTimeout>
+                <readTimeout>30000</readTimeout>
+                <useProxy>false</useProxy>
+                <proxyHost>*proxyHost*</proxyHost>
+                <proxyPort>*proxyPort*</proxyPort>
+            </comm>
+            <scheduler>
+                <delay>10000</delay>
+                <period>15000</period>
+            </scheduler>
+            <keepalive>
+                <delay>10000</delay>
+                <!-- should be 1000*60*60 -->
+                <period>200000</period>
+            </keepalive>
+            <comState>
+                <delay>10000</delay>
+                <period>10000</period>
+            </comState>
+            <fileTransfer>
+                <rate>30</rate>
+            </fileTransfer>
+            <updateInfo>
+                <rate>30</rate>
+            </updateInfo>
+            <gui>
+                <showSplash>true</showSplash>
+            </gui>
+            <startDelay>0</startDelay>
+            <startup>true</startup> 
+            <automaticUpdate>false</automaticUpdate>
+            <measurements>
+                <protocol>
+                    <default>ICMP</default>
+                    <UDP>                   
+                        <blocked>false</blocked>
+                    </UDP>
+                    <ICMP>                  
+                        <blocked>false</blocked>
+                    </ICMP>
+                </protocol>
+            </measurements>
+        
+        </policies>
+
+        <files>
+            <log_config_file>conf/logging.properties</log_config_file>
+            <default_in_file>resources/default.in</default_in_file>
+        </files>
+
+        <networkInterface>default</networkInterface>
+        <skinName>Toxic_Green</skinName>
+        <skinFile>toxicthemepack.zip</skinFile>
+        
+        <urls>
+            <serverURL>http://www.netdimes.org/DIMES/server</serverURL>
+            <compressedServerURL>http://www.netdimes.org/DIMES/serverCompressed</compressedServerURL>
+            <DimesLink>http://www.netdimes.org</DimesLink>
+            <basicTraceDest>jupiter.eng.tau.ac.il</basicTraceDest>
+            <basicTraceDest1>www.netdimes.org</basicTraceDest1>
+            <basicTraceDest2>www.google.com</basicTraceDest2>
+            <basicTraceDest3>www.yahoo.com</basicTraceDest3>
+            <keepaliveURL>http://www.netdimes.org/DIMES/keepAlive</keepaliveURL>
+            <secureKeepaliveURL>http://www.netdimes.org/DIMES/keepAlive</secureKeepaliveURL>
+            <updateURL>http://www.netdimes.org/DIMES/update</updateURL>
+            <secureUpdateURL>http://www.netdimes.org/DIMES/update</secureUpdateURL>
+            <propertiesUpdateURL>http://www.netdimes.org/DIMES/propertiesUpdate</propertiesUpdateURL>
+            <securePropertiesUpdateURL>https://www.netdimes.org/DIMES/propertiesUpdate</securePropertiesUpdateURL>
+            <scriptUpdateURL>http://www.netdimes.org/DIMES/defaultScriptUpdate</scriptUpdateURL>
+            <secureScriptUpdateURL>https://www.netdimes.org/DIMES/defaultScriptUpdate</secureScriptUpdateURL>
+            <ASInfoURL>http://www.netdimes.org/DIMES/ASInfo</ASInfoURL>
+            <groupNamesURL>http://www.netdimes.org/DIMES/statistics/group-names</groupNamesURL>
+            <rendezvousServerURL>http://jupiter.eng.tau.ac.il/DIMES/rendezvous</rendezvousServerURL>
+            <agentStatisticsURL>http://www.netdimes.org/DIMES/statistics/users?userName</agentStatisticsURL>
+            <forumsURL>http://www.netdimes.org/phpBB2/</forumsURL>
+            <faqURL>http://www.netdimes.org/new/?q=node/32</faqURL>         
+        </urls>
+
+        <names>
+            <logger>dimes</logger>
+            <resultWriter>resultWriter</resultWriter>
+            <resultWriterFile>true</resultWriterFile>
+        </names>
+    </init>
+
+    <state>
+        <debug>false</debug>
+        <registered>true</registered>
+        <hasPswd>*hasPswd*</hasPswd>
+        <enableSkin>false</enableSkin>
+    </state>
+</agentConf>

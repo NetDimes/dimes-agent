@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project default="javadoc">
+<target name="javadoc">
+<javadoc access="public" author="true" classpath="C:\work\eclipse3.1\plugins\org.junit_3.8.1\junit.jar" destdir="doc" doctitle="Java Network Stack - Research oriented network programming" nodeprecated="false" nodeprecatedlist="false" noindex="false" nonavbar="false" notree="false" packagenames="dimes.measurements.nio,dimes.measurements.nio.platform,dimes.measurements,dimes.measurements.nio.packet.analysis,dimes.measurements.nio.packet,dimes.measurements.nio.packet.builder,dimes.measurements.nio.testing,dimes.measurements.nio.packet.header,dimes.measurements.nio.error" source="1.4" sourcepath="." splitindex="true" use="true" version="true"/>
+</target>
+</project>

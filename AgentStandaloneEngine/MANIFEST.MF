@@ -1,0 +1,3 @@
+Manifest-Version: 1.0
+Main-Class: dimes.AppSplash
+Class-Path: ../Base/resources/commons-io-1.3.2.jar ../Base/resources/dom4j-full.jar ../Base/resources/JavaNetworkStack.jar ../Base/resources/commons-compress-1.0.jar 

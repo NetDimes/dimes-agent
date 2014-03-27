@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ====================================================================== 
+     2/2/2010 Jar Build Script 
+     BoazH                                          
+     ====================================================================== -->
+<project name="BuildJar">
+	<description>
+           Installer buildfile
+    </description>
+	<property name="agent.base" location="./"/>
+
+	<property name="agent.output" location="${agent.base}/output"/>
+    <!--
+	<property name="agent.resources" location="${agent.base}/resources"/>
+	<property name="agent.conf" location="${agent.base}/conf"/>
+
+	<property name="agent.source.dimes" location="${agent.base}../dimes"/>
+	<property name="agent.source.lib_odi" location="${agent.base}../lib_odi"/>
+	<property name="agent.source.netgraph" location="${agent.base}../NetGraph"/>
+    -->
+	<property name="builder.JarLoc" location="./"/>
+	<!--
+	<property name="launcher.base" location="../AgentLauncher"/>
+	<property name="launcher.jars" location="${launcher.base}/JARs"/>
+	<property name="launcher.resources" location="${launcher.base}/Base/resources"/>
+	<property name="launcher.conf" location="${launcher.base}/Base/conf"/>
+
+	<property name="installer.base" location="."/>
+	<property name="installer.jars" location="${installer.base}/Classes/JARs"/>
+	<property name="installer.resources" location="${installer.base}/Classes/Base/resources"/>
+	<property name="installer.conf" location="${installer.base}/Classes/Base/conf"/>
+	<property name="installer.src" location="${installer.base}" />
+	<property name="installer.src.launcher" location="${installer.src}/AgentLauncher" />
+    <property name="installer.src.agent" location="${installer.src}/DevelopmentAgent" />
+    -->
+
+	<!-- This property value can be overriden from the command line also: -Dinstallfile.name=value -->
+	<property name="installfile.name" value="Dimes-Win-Install-0-5-2.exe"/>
+
+	<!--
+	<target name="deleting" description="Preparing the places by deleting old jars and resources">
+		<delete file="${launcher.jars}\10.jar" verbose="true" failonerror="false"/>
+		<delete file="${installer.jars}\10.jar" verbose="true" failonerror="false"/>
+		<delete file="${installer.base}\${installfile.name}"/>
+		<delete file="${launcher.conf}\properties.xml"/>
+		<delete file="${launcher.conf}\developmentProperties.xml"/>
+		<delete file="${installer.conf}\properties.xml" />
+		<delete dir="${launcher.resources}" verbose="true" failonerror="false"/>
+		<delete dir="${installer.resources}" verbose="true" failonerror="false"/>
+		<delete dir="${installer.src.launcher}" verbose="true" failonerror="false" />
+		<delete dir="${installer.src.agent}" verbose="true" failonerror="false" />
+	</target>
+
+
+	<target name="mkdir" description="Creating new resource directories" depends="deleting">
+		<mkdir dir="${installer.resources}"/>
+		<mkdir dir="${launcher.resources}"/>
+		<mkdir dir="${installer.src.launcher}"/>
+		<mkdir dir="${installer.src.agent}"/>
+	</target>
+	   -->        
+	<target name="creatingAgentJar" description="Creating the new Agent Jar and putting it under the launcher"> 
+		<!-- <     depends="mkdir"> -->
+		<jar destfile="${builder.JarLoc}/AgentEngine.jar" 
+        basedir="${agent.output}"
+		excludes="*.jar .settings/** History conf/** lib/** Outgoing/** bin/** .classpath .project *.eap *.jardesc build.xml MANIFEST.MF"	
+		manifest="${agent.base}/MANIFEST.MF"
+		/>
+
+	</target>
+
+	<!-- 
+    <target name="sealingAgentJar" depends="creatingAgentJar">
+        <signjar jar="${launcher.jars}/10.jar" keypass="DIMESenROUTE" storepass="DIMESinTAU" keystore="${launcher.jars}/DIMES.keystore" alias="deployment" />        
+    </target>
+        -->
+
+	<target name="copying" description="copying new resources and 10.jar" depends="creatingAgentJar">
+		<copy todir="${launcher.resources}" verbose="true">
+			<fileset dir="${agent.resources}">
+				<include name="**/*.*"/>
+			</fileset>
+		</copy>
+		<copy todir="${installer.resources}" verbose="true">
+                <fileset dir="${agent.resources}">
+				<include name="**/*.*"/>
+			</fileset>
+		</copy>
+		<copy todir="${installer.jars}" verbose="true">
+			<fileset file="${launcher.jars}/10.jar" />
+		</copy>
+		<copy todir="${launcher.conf}">
+			  <fileset file="${agent.conf}/properties.xml" />
+			  <fileset file="${agent.conf}/developmentProperties.xml" />
+		</copy>
+		<copy todir="${installer.conf}">
+			  <fileset file="${agent.conf}/properties.xml" />
+		</copy>
+		<copy todir="${installer.src.agent}">
+			<fileset dir="${agent.base}">
+				<include name="**/*.java"/>
+				<include name="**/*.cpp"/>
+				<include name="**/*.h"/>
+				<exclude name="output/**"/>
+			</fileset>	
+		</copy>
+		<copy todir="${installer.src.launcher}">
+	        <fileset dir="${launcher.base}">
+	        	<include name="**/*.java"/>
+			</fileset>
+	    </copy>
+	</target>
+
+	<target name="copyJarToProduction" description="For development use..." depends="copying">
+		<delete file="C:\Program Files\DIMES\Agent\Classes\JARs\10.jar" failonerror="false"/>
+		<copy file="${installer.jars}\10.jar" todir="C:\Program Files\DIMES\Agent\Classes\JARs" />
+	</target>
+
+
+</project>
