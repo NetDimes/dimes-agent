@@ -38,7 +38,7 @@ import dimes.util.properties.PropertiesBean.NoSuchPropertyException;
  *    backup is resumed.
  * 
  */
-public class ExponentialBackoffCommunicator extends StandardCommunicator implements FileExchangeChannel
+public class ExponentialBackoffCommunicator extends CompressedCommunicator implements FileExchangeChannel
 {
 
 	int timesOfDelay = 1;

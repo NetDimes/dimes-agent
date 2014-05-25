@@ -10,8 +10,6 @@ import java.net.MalformedURLException;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
-import org.apache.commons.io.IOUtils;
-
 import dimes.util.CommUtils;
 
 public class CompressedCommunicator extends Communicator {
@@ -33,31 +31,27 @@ public class CompressedCommunicator extends Communicator {
 			// get the output stream to POST
 			//			outStream = this.currConnection.getOutputStream();
 			outStream = this.connectionHandler.getOutputStream();
-//			zipOut = new ZipOutputStream(outStream);
-//			zipOut.putNextEntry(new ZipEntry("Entry1"));
+			zipOut = new ZipOutputStream(outStream);
+			zipOut.putNextEntry(new ZipEntry("Entry1"));
 			
 			// write to the server
-			serverWriter = CommUtils.getWriter(/*zipOut*/outStream);
+			serverWriter = CommUtils.getWriter(zipOut);
 
 			//write header
-//			BufferedReader strReader = new BufferedReader(new StringReader(aHeader));
-//			CommUtils.writeContinuous(strReader, serverWriter);
-//			strReader.close();
-
-			//write file
-//			CommUtils.writeContinuous(outgoingReader, serverWriter);
-//			outgoingReader.close();
-
-			//write trailer - use writeAll to close both reader and writer afterwards
-			
-			//**************************************************************
-			//Ido, 23/01/2013 - write all
-			String all = (aHeader+IOUtils.toString(outgoingReader)+aTrailer)/*.replace(" ","")*/.replace("\n", "").replace("\t", "");
-			BufferedReader strReader = new BufferedReader(new StringReader(all/*aTrailer*/));
+			BufferedReader strReader = new BufferedReader(new StringReader(aHeader));
 			CommUtils.writeContinuous(strReader, serverWriter);
 			strReader.close();
-//			zipOut.closeEntry();
-//			zipOut.flush();
+
+			//write file
+			CommUtils.writeContinuous(outgoingReader, serverWriter);
+			outgoingReader.close();
+
+			//write trailer - use writeAll to close both reader and writer afterwards
+			strReader = new BufferedReader(new StringReader(aTrailer));
+			CommUtils.writeContinuous(strReader, serverWriter);
+			strReader.close();
+			zipOut.closeEntry();
+			zipOut.flush();
 		}
 		finally
 		{

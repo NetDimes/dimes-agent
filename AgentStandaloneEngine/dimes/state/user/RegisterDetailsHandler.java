@@ -93,7 +93,7 @@ public class RegisterDetailsHandler
 			BufferedReader regStrBuffer = new BufferedReader(new StringReader(registrationFileString));
 			BufferedWriter incomingWriter = new BufferedWriter( serverResponse );
 
-			logger.info("Sending: " + registrationFileString);
+			logger.fine("Sending: " + registrationFileString);
 
 			// exchange files :		
 			comm.exchangeFiles(regStrBuffer, incomingWriter, "<agent>", "</agent>");
@@ -285,6 +285,7 @@ public class RegisterDetailsHandler
 		registrationString.append("\t\t</agent>\n");
 		registrationString.append("\t</register-details>\n");
 
+		String test = registrationString.toString(); //Debug. TODO: remove
 		return this.register(registrationString.toString());
 	}
 

@@ -81,7 +81,7 @@ public class CommUtils
 		for (String line = reader.readLine(); line != null; line = reader.readLine())
 		{
 			writer.write(line);
-//			writer.newLine();
+			writer.newLine();
 		}
 		writer.flush(); //can this be used in case of writing to a file?
 		reader.close();
@@ -93,7 +93,7 @@ public class CommUtils
 		for (String line = reader.readLine(); line != null; line = reader.readLine())
 		{
 			writer.write(line);
-//			writer.newLine();
+			writer.newLine();
 		}
 		writer.flush();
 

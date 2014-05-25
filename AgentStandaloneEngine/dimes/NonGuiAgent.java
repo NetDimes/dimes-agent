@@ -148,7 +148,7 @@ public class NonGuiAgent implements HeaderProducer, Agent
 		ComStateDetector.getInstance().start(); 
 
 		// An ExponentialBackoffCommunicator object Overrides dimes.comm2server.Communicator class & detects secured connection
-		comm = new ExponentialBackoffCommunicator(PropertiesBean.getProperty(PropertiesNames.SERVER_URL),
+		comm = new ExponentialBackoffCommunicator(PropertiesBean.getProperty(PropertiesNames.COMPRESSED_SERVER_URL),
 				ConnectionHandlerFactory.NONSECURE_CONNECTION);
 
 		// Create one Scheduler object (one instance)
@@ -452,8 +452,8 @@ public class NonGuiAgent implements HeaderProducer, Agent
 				return;
 			}else{
 				System.out.println("Could not file file "+regFile.getAbsolutePath());
-				RegistrationWorker rw = new RegistrationWorker(getPropertiesUpdateCommunicator());
-				rw.startRegistration(); //register as Anonymous.Anonymous
+////				RegistrationWorker rw = new RegistrationWorker(getPropertiesUpdateCommunicator());
+////				rw.startRegistration(); //register as Anonymous.Anonymous
 //				reg.registerAgent(getPropertiesUpdateCommunicator(), agentIDAlreadyExist, false);
 				
 			}
@@ -988,7 +988,7 @@ public class NonGuiAgent implements HeaderProducer, Agent
 		try
 		{
 			// secure connection :
-			propertiesChangeComm = new StandardCommunicator(propertiesUpdateURL, ConnectionHandlerFactory.NONSECURE_CONNECTION);
+			propertiesChangeComm = new StandardCommunicator(securePropertiesUpdateURL, ConnectionHandlerFactory.SECURE_CONNECTION);
 		}
 		catch (MalformedURLException e)
 		{

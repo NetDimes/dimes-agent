@@ -64,7 +64,7 @@ public class RegistrationWorker //extends Thread //implements CancelInputListene
 //            NetworkInterface ni = NetworkInterface.getByInetAddress(addr);
 //            mac =  getMac(ni.getHardwareAddress());
 
-        
+            agentSuffix = "."+addr.getHostName()+"."+ mac; //Agent name will be Anonymous.regName.Machinename.FF:FF:FF:FF:FF:FF
 		}
 		catch(UnknownHostException uhe){uhe.printStackTrace();}
 		catch(PropertiesBean.NoSuchPropertyException  nspe){
@@ -80,7 +80,7 @@ public class RegistrationWorker //extends Thread //implements CancelInputListene
 					e.printStackTrace();
 					System.out.println("Failed to get mac");
 				}
-				agentSuffix = "."+addr.getHostName()+"."+ /*mac*/Math.random(); //Agent name will be Anonymous.regName.Machinename.FF:FF:FF:FF:FF:FF  
+	           
 			}
 		}
 
@@ -116,7 +116,7 @@ public class RegistrationWorker //extends Thread //implements CancelInputListene
 	public void doRegistration()
 	{
 		boolean registrationCanceled = false;
-		int secondsToWait = 4000;
+		int secondsToWait = 4;
 		RegistrationStatus regStat = new RegistrationStatus();
 
 		// repeat while the registration is not successfull 

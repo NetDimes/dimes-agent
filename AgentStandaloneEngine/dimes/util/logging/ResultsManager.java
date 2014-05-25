@@ -1,7 +1,5 @@
 package dimes.util.logging;
 
-import java.io.UnsupportedEncodingException;
-
 public abstract class ResultsManager {
 
 	private static StringBuffer resultsString= null; //use String buffer for thread safe operation in the future
@@ -23,17 +21,9 @@ public abstract class ResultsManager {
 			resultsPending=false;
 			resultsPooled=true;
 			resultsString.append("</Results>");
-			try {
-				return new String(resultsString.toString().getBytes(), "UTF-8");
-			} catch (UnsupportedEncodingException e) {
-				throw new RuntimeException("Encoding problem", e);
-			}
+			return resultsString.toString();
 		}else{
-			try {
-				return new String("<Results></Results>".getBytes(), "UTF-8");
-			} catch (UnsupportedEncodingException e) {
-				throw new RuntimeException("Encoding problem", e);
-			} //Empty results string
+			return "<Results></Results>"; //Empty results string
 		}
 	}
 	

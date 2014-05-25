@@ -175,16 +175,15 @@ public final class Scheduler {
 			askForWork=true;			
 		}
 		String resultsString = ResultsManager.poolResults();
-//		if (resultsString.contains("</OperationResult>")){
-//			String temp = resultsString;
-//			int count = 0;
-//			while (temp.contains("</OperationResult>")){
-//				count++;
-//				temp = temp.substring(0,temp.indexOf("</OperationResult>"));
-//			}
-//			System.out.println("Result Number: " + count+"\n");
-//		}
-
+		if (resultsString.contains("</OperationResult>")){
+			String temp = resultsString;
+			int count = 0;
+			while (temp.contains("</OperationResult>")){
+				count++;
+				temp = temp.substring(0,temp.indexOf("</OperationResult>"));
+			}
+			System.out.println("Result Number: " + count+"\n");
+		}
 		StringReader resultsReader = new StringReader(resultsString);
 		String header = this.agent.getAgentHeader(Scheduler.askForWork);
 		String trailer = this.agent.getAgentTrailer();
