@@ -118,7 +118,7 @@ public interface Agent {
 	 * perform a parsed user task. Note that parsing and preparing the user task
 	 * is made before calling this function.
 	 */
-	public abstract void startUserTask(UserTaskSource commandLineTask);
+	public abstract void startUserTask(UserTaskSource commandLineTask, String exid);
 
 	/**Checks for a valid AgentID in properties.Xml
 	 * 

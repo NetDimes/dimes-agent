@@ -151,11 +151,16 @@ public class AgentFrameFacade {
 		int defaultProtocol;
 		UserTaskSource task = null;
 		String resource = null;
+		
 		try{
 		Element resourceElm = XMLUtil.getChildElementByName(current, "RESOURCE");//.getTextContent();
 		Node resourceFirstChildElm =	resourceElm.getFirstChild();
-		if(null==resourceFirstChildElm) resource = resourceElm.getTextContent();
-		else resource = XMLUtil.nodeToString(resourceFirstChildElm);
+		if(null==resourceFirstChildElm){
+			resource = resourceElm.getTextContent();
+		}
+		else{
+			resource = XMLUtil.nodeToString(resourceFirstChildElm);
+		}
 		switch (MessageTypes.lookup.get(XMLUtil.getChildElementByName(current, "TYPE").getTextContent())){
 		case MessageTypes.SCRIPT_ACTION_LOAD_FILE_ACTION :
 			File fileToOpen = new File(resource);
@@ -182,6 +187,7 @@ public class AgentFrameFacade {
 			break;
 			}
 		}catch(Exception e){
+			e.printStackTrace();
 		 return;	
 		}
 				
@@ -196,15 +202,16 @@ public class AgentFrameFacade {
 			}
 			if(task instanceof RawUserTaskSource){
 				String commandString = task.getCommandsString();
-				Element pennyElm = XMLUtil.getRootElement(commandString);
-				Element scriptElm = XMLUtil.getChildElementByName(pennyElm, "SCRIPT");
-				experimentID = scriptElm.getAttribute("EXID");
+				//Element pennyElm = XMLUtil.getRootElement(commandString);
+				//commented by amir
+				//Element scriptElm = XMLUtil.getChildElementByName(pennyElm, "SCRIPT");
+				//experimentID = scriptElm.getAttribute("EXID");
 				((RawUserTaskSource)task).setScriptID(experimentID);
 			}
 			ResultSenderHandler.getInstance();
 			ResultSenderHandler.addUserExperiment(experimentID, Integer.toString(port));
 
-			agent.startUserTask(task);
+			agent.startUserTask(task, expID);
 		} catch (UserTaskPerserException e) {
 			e.printStackTrace();
 		}

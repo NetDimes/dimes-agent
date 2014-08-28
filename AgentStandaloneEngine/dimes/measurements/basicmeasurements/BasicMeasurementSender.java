@@ -67,7 +67,6 @@ public class BasicMeasurementSender {
 
 			// test= InetAddress.getLocalHost().getHostAddress();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		try{
@@ -118,7 +117,6 @@ public class BasicMeasurementSender {
 			int protocol = m.getProtocol();
 			long timeInterval = m.getTimeToWait();
 			maxTTL = (byte) m.getLastTTL();
-			Object[] vertorArray = new Object[4];	
 			// should we check timeOut here? 0 = no results allocation?
 			results = new PingTracerouteResults(localAddress.getHostName(),routableIP , ipHeader.destIP.getHostName(),
 						ipHeader.destIP.getHostAddress(), CommUtils.ipToLong(ipHeader.destIP.getHostAddress()), 
@@ -169,15 +167,6 @@ public class BasicMeasurementSender {
 				
 					long timeToWait = nextSendTime-System.currentTimeMillis();
 					if (timeToWait > 0) {
-							/*
-							if (packetBuffer.size() != 0) {
-								long[] sendTimes = networkStack.send(packetBuffer);
-								Packet[] packets = packetBuffer.getOrderedPackets();
-								for (int p=0; p<packets.length; p++) {
-									currentMeasurement.addPacket((byte)(packets[p].+1-m.getFirstTTL()), sendTimes[p]);
-								}
-								packetBuffer.clear();
-							}*/
 						// use this time to receive packets instead of sleep - will get packages too late otherwise
 						networkStack.receive(timeToWait, receiver);
 					} 
@@ -204,7 +193,6 @@ public class BasicMeasurementSender {
 				}
 				finishTimeCycle += timeIntervalCycles;
 				maxTTL = (byte) receiver.getDestTTL();
-				vertorArray[i]=receiver.getPingTracerouteResults();
 			}
 			long timeToWait = finishTime - System.currentTimeMillis();
 			if (timeToWait > 0) {
@@ -213,49 +201,12 @@ public class BasicMeasurementSender {
 			}
 			// set results
 			results.setRawVector(receiver.getPingTracerouteResults());
-			compareHopCodes(vertorArray);
 			// dest reached - not correct so far!
 			results.setReachedDest(receiver.isDestReachedAtLeastOnce());
 			results.setSF(true);
 			m.setResults(results);
 		}
 		networkStack.close();
-	}
-	
-	@SuppressWarnings("unchecked")
-	private void compareHopCodes(Object[] vertorArray) {
-		Vector<NetHost> v = (Vector<NetHost>) vertorArray[0];
-		Vector<hopTC> hops = new Vector<hopTC>();
-//		int[][] firstVector = new int[v.size()][2];
-		for(int i=0;i<v.size();i++){
-//			firstVector[i][0]= v.get(i).getReplyType();
-//			firstVector[i][1]=v.get(i).getErrorCode();
-			hops.add(new hopTC(v.get(i).getReplyType(),v.get(i).getErrorCode() ));
-		}
-//		for (int i=0;i<v.size();i++){
-//			System.out.print(" "+firstVector[i][0]);
-//	//		System.out.println("");
-//			System.out.print(" "+firstVector[i][1]);
-//			
-//		}
-		for (int j=1;j<4;j++){
-		v = (Vector<NetHost>) vertorArray[j];
-//		Vector<hopTC> secondHops = new Vector<hopTC>();
-		for(int i=0;i<v.size() && i<hops.size();i++){
-			hopTC thisHop = new hopTC(v.get(i).getReplyType(),v.get(i).getErrorCode());
-
-			hopTC firstHop = hops.get(i);
-			if(!firstHop.equals(thisHop)){
-				System.out.println("------ Type/Code Mismatch --------");
-				System.out.println("First hope type: "+firstHop.getType()+" hop "+i+" type: "+thisHop.getType());
-				System.out.println("First hope code: "+firstHop.getCode()+" hop "+i+" code: "+thisHop.getCode());
-				System.out.println("----------------------------------");
-				
-			}
-//			if (firstVector[i][0]!= v.get(i).getReplyType())System.out.println("HOP TYPE MISMATCH: "+firstVector[i][0]+" to "+v.get(i).getReplyType());
-//			if (firstVector[i][1]!=v.get(i).getErrorCode())System.out.println("HOP CODE MISMATCH: "+firstVector[i][1]+" to "+v.get(i).getErrorCode());
-		}}
-		System.out.println("Finished Comparing Type/Code");
 	}
 
 	public void printResults(short length) {

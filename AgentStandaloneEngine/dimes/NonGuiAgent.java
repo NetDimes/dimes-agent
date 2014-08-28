@@ -623,7 +623,7 @@ public class NonGuiAgent implements HeaderProducer, Agent
 	/* (non-Javadoc)
 	 * @see dimes.IAgent#startUserTask(dimes.scheduler.usertask.UserTaskSource)
 	 */
-	public void startUserTask(UserTaskSource commandLineTask)
+	public void startUserTask(UserTaskSource commandLineTask, String exid)
 	{
 		
 		System.out.println("Starting Agent task : " + commandLineTask);
@@ -634,10 +634,12 @@ public class NonGuiAgent implements HeaderProducer, Agent
 		String scriptId = commandLineTask.getScriptID() + "-" + time; //use traceURL_systime as script id
 		
 		//		exId = PropertiesBean.getProperty(PropertiesNames.USER_NAME/* "userName" */);
-				String commandString = commandLineTask.getCommandsString();
-				Element pennyElm = XMLUtil.getRootElement(commandString);
-				Element scriptElm = XMLUtil.getChildElementByName(pennyElm, "SCRIPT");
-				exId = scriptElm.getAttribute("EXID");
+				//String commandString = commandLineTask.getCommandsString();
+				//Element pennyElm = XMLUtil.getRootElement(commandString);
+				//commented by amir
+				//Element scriptElm = XMLUtil.getChildElementByName(pennyElm, "SCRIPT");
+				//exId = scriptElm.getAttribute("EXID");
+				exId = exid;
 		
 		Reader scriptReader = this.sched.getMeasurementScript(exId, scriptId, commandLineTask);	// create a script reader
 		this.sched.handleResponse(scriptReader);

@@ -5,9 +5,6 @@ import java.util.LinkedList;
 import java.util.TreeMap;
 import dimes.measurements.QBEHost;
 
-//import dimes.measurements.nio.packet.header.ICMPv4Header;
-
-
 public class MeasurementCycle {
 	private short offset;
 	private TreeMap<Short, NetHostLocal> hops;
@@ -32,12 +29,12 @@ public class MeasurementCycle {
 		++nSentPackets;
 	}
 	
-	public void addResult(short idx, InetAddress destIP, long microsecReceiveTime, int replyType, int errorCode, int ipID) {
+	public void addResult(short idx, InetAddress destIP, long microsecReceiveTime, int replyType, int errorCode, int ipID, short ttl) {
 		PacketInfo myInfo = sentPackets[idx];
 		if (myInfo != null) {
 			short id = myInfo.getID();
 			Short key = new Short(id);
-			hops.put(key, new NetHostLocal(id, destIP, microsecReceiveTime - myInfo.getTime(), replyType, errorCode, ipID));
+			hops.put(key, new NetHostLocal(ttl & 0xFF, destIP, microsecReceiveTime - myInfo.getTime(), replyType, errorCode, ipID));
 		}
 	}
 	
@@ -51,24 +48,19 @@ public class MeasurementCycle {
 	
 	public int printRoute(short length) {
 		System.err.println("*** traceroute results *** :");
-//		short maxTTLinCycle = 0;
 		int nHops = hops.size();
 		short printed = 0;
 		short i;
 		
 		for (i=1; i<=length; i++) {
 			Short key = new Short(i);
-			NetHostLocal hop = (NetHostLocal) hops.get(key);
+			NetHostLocal hop = hops.get(key);
 			if (hop != null) {
-				System.err.println("(" + key + ") " + hop.getAddress().getHostAddress() + " - " + (double)(hop.getDelay())/1000.0 + " milisec ( " + hop.getReplyTypeString() + " )");
+				System.err.println("(" + key + ") " + hop.getAddress().getHostAddress() + " - " + (hop.getDelay())/1000.0 + " milisec ( " + hop.getReplyTypeString() + " )");
 				System.err.println("TYPE: "+hop.getReplyType()+" CODE: "+hop.getErrorCode());
-//				maxTTLinCycle = i;
 				if (++printed == nHops) {
 					break;
 				}
-				
-			} else {
-				//System.err.println("(" + keyttl + ") *** ");
 			}
 		}
 		System.err.println("*** end ***");
@@ -83,7 +75,7 @@ public class MeasurementCycle {
 		short idx = 1;
 		while (hopNumber <= nHops) {
 			Short key = new Short(idx);
-			NetHostLocal hop = (NetHostLocal) hops.get(key);
+			NetHostLocal hop = hops.get(key);
 			if (hop != null) {
 				route.add(hop);
 				++hopNumber;
@@ -102,7 +94,6 @@ public class MeasurementCycle {
 	
 	public LinkedList<QBEHost> getQBEResults(int expID, int trainNum) {
 		int nHops = hops.size();
-//		System.out.println("nHops: "+nHops);
 		if (nHops == 0) {
 			return null;
 		}
@@ -110,24 +101,18 @@ public class MeasurementCycle {
 		int hopNumber = 1;
 		short idx = 1;
 		while (hopNumber <= nHops) {
-//			System.out.println("hop#: "+ hopNumber);
 			Short key = new Short(idx);
 			NetHostLocal hop = hops.get(key);
 			if (hop != null) {
 				results.add(new QBEHost(trainNum, idx, expID, hop.getHostAddress(), hop.getDelay()));
-//				System.out.println("MeasurementCycle getQBEresults results: "+ results.size());
 				++hopNumber;
-			} /*else {
-				results.add(new QBEHost(trainNum, idx, expID, "", -1));
-			}*/
+			}
 			if(hopNumber+1 <0){
 				System.out.println("wraparound!"+ idx);
 				break;
 			}
-//			if(idx>0 && idx%1000==0) System.out.println(idx);
 			++idx;
 		}
-//		System.out.println("Final IDX:"+idx);
 		return results;
 	}
 	

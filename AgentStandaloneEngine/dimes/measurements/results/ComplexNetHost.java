@@ -120,39 +120,19 @@ public class ComplexNetHost extends NetHost implements StatisticsObject
 		tmp = this.avgTime;
 		this.avgTime = anAlternative.avgTime;
 		anAlternative.avgTime = tmp;
+		
+		String tmpString = this.hopAddressStr;
+		this.hopAddressStr = anAlternative.hopAddressStr;
+		anAlternative.hopAddressStr = tmpString;
+		
+		tmpString = this.hopNameStr;
+		this.hopNameStr = anAlternative.hopNameStr;
+		anAlternative.hopNameStr = tmpString;
+		
+		long tmpLong = this.hopAddress;
+		this.hopAddress = anAlternative.hopAddress;
+		anAlternative.hopAddress = tmpLong;
 	}
-	
-	/**
-	 * 
-	 */
-	public void setLost()
-	{
-		this.lostNum=1;
-	}
-	
-	public int getLost(){
-		return this.lostNum;
-	}
-
-	
-	/**
-	 * 
-	 */
-	public void setLost(int value)
-	{
-		this.lostNum=value;
-	}
-	
-//	/**
-//	 * @return
-//	 */
-//	public NetHost getNetHost(){
-//		NetHost result = new NetHost();
-//		result.avgTime=this.avgTime;
-//		result.bestTime=this.bestTime;
-//		result.worstTime=this.worstTime;
-//		return result;
-//	}
 
 	/**
 	 * @param packetReturnTTL

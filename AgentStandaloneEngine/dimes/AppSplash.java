@@ -95,14 +95,7 @@ public class AppSplash {
 	 */
 	public AppSplash(String[] args) throws IOException {
 
-		//Instead of referring to args[0] multiple times, we'll save the location of the properties.xml
-		//file once, and refer to that. (The StackTrace doesn't get logged because there is no logger yet)
-		try{
-			FileHandlerBean.setPropertiesLocation(parseArgs(args));
-		}catch(Exception e){e.printStackTrace();}
-
-		//We initialize the PropertiesBean before the Instance check so that we can get a logger
-		PropertiesBean.init(FileHandlerBean.getPropertiesLocation());                
+		PropertiesBean.init(parseArgs(args));             
 		this.logger = Loggers.getLogger(this.getClass());
 		initResources();
 //		ConnectorBean = GUIConnectorBean.getInstance();
@@ -400,30 +393,6 @@ public class AppSplash {
 
 			app.agentFrameLock.waitFor();
 			
-//			if( interactive ) {
-//				
-//				// After disposing the application, the following code will run,
-//				((JFrame) app.mainObj).removeWindowListener(app.agentFrameAdapter);
-//				WindowListener[] listeners = ((JFrame) app.mainObj).getWindowListeners();
-//
-//				for (int i = 0; i < listeners.length; i++) {
-//					System.out.println(listeners[i]);
-//					System.out.println(listeners[i].getClass());
-//					((JFrame) app.mainObj).removeWindowListener(listeners[i]);
-//				}
-//				((JFrame) app.mainObj).dispose();
-//			}
-			
-			//TODO: Instead of this, get the "connected" value from the connector. If still connected, disconenct. 
-//			if ((AppSplash.lockSocket != null))//&& !AgentFrame.getMinToTray())
-//				try {
-//					AppSplash.lockSocket.close();
-//				} catch (IOException e) {
-//					/* System.err.println */app.logger
-//					.warning("couldn't release lock socket: "
-//							+ e.toString());
-//				}
-
 			restart = Boolean.valueOf( //If the resart property is true, the variable is set to true, and the while loops runs again (Agent restart)
 					System.getProperty(AppSplash.INTERNAL_RESTART_PROPERTY))
 					.booleanValue();
@@ -435,68 +404,22 @@ public class AppSplash {
 
 	private void initResources() throws IOException//boolean lookForResources, boolean resourcesFromStartup) throws MalformedURLException, SecurityException, IllegalAccessException, InvocationTargetException, NoSuchMethodException, NoSuchMethodException
 	{
-		File classJar = null;
 		String agentResourcesPath=null;
-		String agentBasePath = null;
 		URLClassLoader classLoader = null;
 		
-//	    System.out.println("-- reset - lookForResources: "+lookForResources);
-		Vector resources = new Vector();
 		try {
-			agentBasePath = PropertiesBean.getProperty(PropertiesNames.BASE_DIR);
 			agentResourcesPath = PropertiesBean.getProperty(PropertiesNames.RESOURCES_DIR);
 		} catch (NoSuchPropertyException e) {
 			e.printStackTrace();
 		}
-/*		if (lookForResources)//true after runStartup
-        {
-		    Object[] result = new Object[1];
-		    Object[] params = new Object[] {new Boolean(resourcesFromStartup), this.agentResourcesPath};
-		    this.callStartupMethod("getLatestResources",params, result);
-//            resources = this.getLatestResources(resourcesFromStartup);
-		    
-		    resources = (Vector)result[0];
-		    
-            //clean old resources
-    		File resourcesDir = new File(this.agentResourcesPath);
-    		File[] allResources = resourcesDir.listFiles(
-    		        new FileFilter()
-    				{public boolean accept(File pathname) 
-    				{return pathname.getName().endsWith(".jar") || pathname.getName().endsWith(".dll");}
-    			});
-    		
-    		Vector old = new Vector(Arrays.asList(allResources));
-    		old.removeAll(resources);
-    		this.callStartupMethod("handleOldVersions", new Object[] {old}, null);
-    		
-    		if (this.oldJars!= null)
-            {
-                this.callStartupMethod("handleOldVersions", new Object[] {this.oldJars}, null);
-                this.oldJars = null;
-            }    		    
-        }*/
-
-		//call gc only on 2nd call to init, when lookForResources=true
-//		this.reset(/*lookForResources*/);
-
-//		    Object[] result = new Object[1];
-//		    Object[] params = new Object[] {new Boolean(resourcesFromStartup), agentResourcesPath};
-//		    this.callStartupMethod("getLatestResources",params, result);
-//            resources = this.getLatestResources(resourcesFromStartup);
-		    
-//		    resources = (Vector)result[0];
-		    
-            //clean old resources
-
 		File resourcesDir = new File(agentResourcesPath);
-		File[] allResources = resourcesDir.listFiles(
-		        new FileFilter()
-				{public boolean accept(File pathname) 
-				{return pathname.getName().endsWith(".jar") || pathname.getName().endsWith(".dll");}
-			});
+		File[] allResources = resourcesDir.listFiles(new FileFilter() {
+			public boolean accept(File pathname) {
+				return pathname.getName().endsWith(".jar")
+						|| pathname.getName().endsWith(".dll");
+			}
+		});
 		
-//TODO		URI jarURI = classJar.toURI();  //.toURL() is deprecated, Java recommends converting to URI first. 
-//TODO		URL jarURL = jarURI.toURL();
 		Vector jarResources = new Vector();
 		for (int i=0; i<allResources.length; ++i)
 		{
@@ -507,7 +430,6 @@ public class AppSplash {
 		jarResources.trimToSize();
 		
 		URL[] urls = new URL[jarResources.size()+1];//classJar + resources
-//TODO		urls[0] = jarURL;
 		for (int i=1; i<urls.length; ++i)
 			try {
 				urls[i] = (((File)jarResources.get(i-1)).toURI()).toURL();
